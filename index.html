@@ -1,84 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blood Group Form</title>
-  <style>
-      *{
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-family: 'poppins', sans-serif;
-  font-size: 18px;
-}
-body{
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.container{
-  width: 500px;
-  padding: 30px;
-  border: 1px solid #eeeeee;
-  border-radius: 10px;
-  background-color: #003b5b;
-}
-h4{
-  margin-bottom: 10px;
-  font-size: 24px;
-  color: white;
-}
-input{
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-textarea{
-  width: 100%;
-  padding: 10px;
-}
-#submit{
-  border: none;
-  background-color: orangered;
-  color: white;
-  width: 200px;
-  margin-top: 10px;
-  border-radius: 5px;
-}
-#submit:hover{
-  background-color: #333333;
-}
+  <meta charset="UTF-8">
+  <title>Trian Triquet Filltering</title>
+  <style type="text/css">
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    
+    .box{
+      width: 700px;
+      height: 550px;
+      padding: 50px;
+      margin: auto;
+      background-color: #dedede;
+    }
+    .box input {
+      width: 300px;
+      padding: 13px;
+      border: 1px solid #333;
+      box-sizing: border-box;
+      margin-top: 10px;
+      margin-left: 200px;
+      border-radius: 10px;
+    }
+    .box ul{
+      list-style-type: none;
+      display: none;
+    } 
+    .box ul li{
+      width: 230px;
+      padding: 10px;
+      background-color: white;
+      border-bottom: 1px solid green;
+      color; white;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 2px;
+      margin-left: 225px;
+    }
+    .box ul li:hover{
+      background-color: silver;
+    }
   </style>
 </head>
 <body>
+  
+  <div class="box">
+  
+    <h2 style="color: red">Search Your Stison Name</h2>
+  
+    <input id="myInput" type="text" placeholder="Search..">
+    <br>
 
-  <div class="container">
-    <form method="post" action="" name="contact-form">
-      <h2>Blood Group Registration</h2>
-      <h4>Contact Us</h4>
-      <input type="text" name="your-name" placeholder="Name">
-      <input type="text" name="your-number" placeholder="Number">
-      <input type="email" name="your-email" placeholder="Email">
-      <textarea name="message" rows="7" placeholder="Your Message">
-      </textarea>
-      <input type="submit" value="Submit" id="submit">
-    </form>
+    <ul id="myList">
+      <li>Barishal</li>
+      <li>Chittagong</li>
+      <li>Dhaka</li>
+      <li>Mymensingh</li>
+      <li>Khulna</li>
+      <li>Rajshahi</li>
+      <li>Rangpur</li>
+      <li>Sylhet</li>
+      <li>Dinajpur</li>
+      <li>Thakurgoan</li>
+      <li>Nilphamari</li>
+      <li>Parbotipur</li>
+      <li>Pirgonj</li>
+      <li>Bimanbondhor</li>
+      <li>Joypurhut</li>
+      <li>Santahar</li>
+      <li>Auckelpur</li>
+      <li>Nator</li>
+      <li>Esordi</li>
+    </ul>
+    
   </div>
-
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script src="jquery-3.3.1.min.js"></script>
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzywz6M0Xhtn_qEgB5M0CBQyKTQvXqd9SPVftN4x85TtwDuO-nuMnLrq5_n_1V_FxpnXQ/exec'
-
-    const form = document.forms['contact-form']
-
-    form.addEventListener('submit', e => {
+  
+    // Filtering Code Start
+    
+    $(document).ready(function(){
+    
+      $("#myInput").on("keyup", function() {
+        
+        var value = $(this).val().toLowerCase();
+        
+        $("#myList li").filter(function() {
+          
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          
+        });
+      });
+    });
+    
+    // Filtering Code End
+    
+    // extra-condensed
+    
+    $('.box input').focus( function (){
+    
+      $('.box ul').slideDown(1000);
+    
+    } );
+    
+    $('.box input').blur( function (){
+    
+      $('.box ul').slideUp(1000);
+    
+    } );
+    
+    $('.box ul li').click( function (){
       
-      e.preventDefault()
+      var jekono = $(this).text();
       
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => alert("Thank you! Form is submitted" ))
-      .then(() => { window.location.reload(); })
-      .catch(error => console.error('Error!', error.message))
-    })
+      $('.box input').val(jekono);
+    } );    
+    
   </script>
 
 </body>
